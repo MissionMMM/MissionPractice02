@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件参数</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 原生DOM的自定义属性, 代替事件传参写法 showHobby('打篮球') -->
+    <button data-hobby="打篮球" @click="showHobby">壮壮</button>
+    <button data-hobby="唱,跳" @click="showHobby">文青</button>
+
+    <!-- 没有主动传参: 默认的参数1 是事件参数 -->
+    <button @click="show">磊磊1</button>
+    <!-- 带有（） 则进入 自定义传参模式 -->
+    <button @click="show()">磊磊2</button>
+    <button @click="show('哈哈哈哈')">柯晗</button>
+    <!-- 自定义传参模式下, 如何传递事件参数 -->
+    <button @click="show($event)">磊磊3</button>
+
+  </div>
+
+  <script src="./vendor/vue.js"></script>
+  <script>
+    // Vue作者的理念: 0 DOM操作  -- 不会DOM一样用vue
+    new Vue({
+      el: '#app',
+      methods: {
+        show(name) {
+          console.log('name:', name)
+        },
+
+        showHobby(e) {
+          // 事件参数e: 保存了当前事件相关的所有事项
+          console.log(e)
+          var hobby = e.target.dataset.hobby
+          var name = e.target.innerHTML
+          console.log(name, hobby)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

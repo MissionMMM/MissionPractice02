@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=">
+  <title>指令 - 显示/隐藏</title>
+</head>
+
+<body>
+  <!-- 指令: directive -->
+  <!-- vue为元素提供了一些 属性, 带来一些新的效果 -->
+  <div id="app">
+    <!-- 到后台看 元素 -->
+    <p v-show="true">壮壮</p>
+    <!-- 所有 v- 开头的, 都是vue的指令 -->
+    <p v-show="false">昌昌</p>
+    <!-- 总结: 快速设置 style="display:none" -->
+  </div>
+
+  <script src="./vendor/vue.js"></script>
+  <script>
+    new Vue({
+      el: "#app"
+    })
+  </script>
+</body>
+
+</html>

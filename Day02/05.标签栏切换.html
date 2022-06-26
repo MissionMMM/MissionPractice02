@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>标签栏切换</title>
+  <style>
+    .nav {
+      border-bottom: 1px solid #e4393c;
+      user-select: none;
+      display: flex;
+      background-color: #f7f7f7;
+    }
+
+    .nav>span {
+      padding: 10px 30px;
+    }
+
+    .nav>span.active {
+      background-color: #e4393c;
+      color: white;
+    }
+
+    .desc {
+      padding: 5px;
+      background-color: #eee;
+      /* 最小高度 */
+      min-height: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="nav">
+      <!-- vue思想: 凡是页面上会变化的, 肯定和数据有关-data -->
+
+      <!-- 由于class的切换操作非常常见, 所以作者设置了一个语法 -->
+      <!-- :class="{类名: true/false}"  true生效 false无效 -->
+      <!-- :class="对象类型" -->
+      <span :class="{active: n == 0}" @click="n=0">商品介绍</span>
+      <span :class="{active: n == 1}" @click="n=1">规格与包装</span>
+      <span :class="{active: n == 2}" @click="n=2">售后保障</span>
+      <span :class="{active: n == 3}" @click="n=3">商品评价</span>
+    </div>
+    <p>n:{{n}}</p>
+    <!-- 显示切换 v-show -->
+    <div class="desc" v-show="n == 0">壮壮, 年方37, 喜欢打篮球 </div>
+    <div class="desc" v-show="n == 1">三环一套房, 大众一辆, 20W存款</div>
+    <div class="desc" v-show="n == 2">半年包退换, 大壮可选</div>
+    <div class="desc" v-show="n == 3">你是个好人</div>
+  </div>
+
+  <script src="./vendor/vue.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data: { n: 0 } // 代表序号0的高亮
+    })
+  </script>
+</body>
+
+</html>

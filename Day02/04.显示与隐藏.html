@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>显示与隐藏</title>
+  <style>
+    #app {
+      width: 300px;
+    }
+
+    #app>.title {
+      background-color: #aaa;
+      padding: 10px;
+      user-select: none;
+    }
+
+    #app>.desc {
+      background-color: #eee;
+    }
+
+    p {
+      margin: 0;
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- show=其反值    即真的变假的, 假的变真的 -->
+    <!-- HTML的属性需要:,  v- 是vue自己的不用加 -->
+    <div class="title" @click="show=!show">
+      点击{{show ? '收起' :'查看'}}男嘉宾信息
+    </div>
+    <!-- vue的思想: 凡是页面上会变的, 必然要绑定一个数据 -->
+    <div class="desc" v-show="show">
+      <p>姓名: 壮壮</p>
+      <p>年龄: 28</p>
+      <p>格言: 我是晕晕, 带你上王者</p>
+      <p>特长: 无</p>
+    </div>
+  </div>
+
+  <script src="./vendor/vue.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data: { show: false } //初始值false 不显示
+    })
+  </script>
+</body>
+
+</html>

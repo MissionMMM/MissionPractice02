@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>复习</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- vue提供的新语法 {{}}, 在双标签中书写 JS 代码 -->
+    <h1>title: {{title}}</h1>
+    <!-- 属性用 : -->
+    <a :href="baidu.href" :title="baidu.title">{{title}}</a>
+    <a href="baidu.href" title="baidu.title">{{title}}</a>
+
+    <h2>点击查看他们的爱好</h2>
+    <div>
+      <!-- 事件关联的方法, 必须书写在methods属性里 -->
+      <button @click="showHobby('壮壮', '范凯')">壮壮</button>
+      <button @click="showHobby('浩浩', '壮壮')">浩浩</button>
+      <button @click="showHobby('文青', '浩浩')">文青</button>
+      <button @click="showHobby('范凯', '文青')">范凯</button>
+
+      <!-- 旧思想: 利用DOM查找到元素, 修改他的 innerTHML属性 -- 手动 -->
+      <!-- 新思想: 把一个数据绑定在DOM元素上, 然后数据变化会 自动更新 -->
+      <p>{{msg}}</p>
+    </div>
+  </div>
+
+  <script src="./vendor/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app', //固定属性: 配置vue对象服务的元素是哪个
+      // data: 页面上使用的数据 放在此处
+      data: {
+        msg: '',
+        title: "欢迎来到Vue的世界",
+        baidu: { title: "百度一下", href: "http://www.baidu.com" }
+      },
+      // methods: 页面上使用的方法, 放在此处
+      methods: {
+        // 在语法糖的加持下,可以省略  :function
+        // showHobby: function () { }
+        showHobby(name, hobby) {
+          // alert(`${name}喜欢${hobby}`)  // 某某某 喜欢 xxx
+
+          // 修改数据, 页面会自动变化
+          this.msg = `${name}喜欢${hobby}`
+        }
+      }
+    })
+
+
+  </script>
+</body>
+
+</html>
